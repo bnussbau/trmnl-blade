@@ -2,6 +2,14 @@
 
 All notable changes to `trmnl-blade` will be documented in this file.
 
+## 2.3.4 - 2026-03-17
+
+### What's Changed
+
+* feat: add support for Laravel 13
+
+**Full Changelog**: https://github.com/bnussbau/trmnl-blade/compare/2.3.3...2.3.4
+
 ## 2.3.3 - 2026-03-03
 
 ### What's Changed
