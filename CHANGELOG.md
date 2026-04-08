@@ -2,6 +2,16 @@
 
 All notable changes to `trmnl-blade` will be documented in this file.
 
+## 3.0.3 - 2026-04-08
+
+### What's Changed
+
+* feat: bump `TRMNL_BLADE_FRAMEWORK_VERSION` to 3.0.3
+* feat: `Progress` accepts `variant` (`bar` default, `dots` → `progress-dots`) and `size` (`{root}--{size}` per [Progress v3](https://trmnl.com/framework/docs/v3/progress.md)), merges `$attributes`, and supports extra modifier classes.
+* fix: `Background` component emits `bg--{token}` to match framework utility class names.
+
+**Full Changelog**: https://github.com/bnussbau/trmnl-blade/compare/2.3.7...3.0.3
+
 ## 2.3.7 - 2026-04-03
 
 ### What's Changed
