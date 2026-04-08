@@ -11,7 +11,7 @@ it('renders background component with default class', function () {
         'attributes' => new ComponentAttributeBag([]),
     ])->render();
 
-    expect($html)->toContain('<div class="bg-black">');
+    expect($html)->toContain('<div class="bg--black">');
     expect($html)->toContain('Black');
 });
 
@@ -23,7 +23,7 @@ it('renders background component with color gray-1 ', function () {
         'attributes' => new ComponentAttributeBag(['color' => 'gray-1']),
     ])->render();
 
-    expect($html)->toContain('<div class="bg-gray-1">');
+    expect($html)->toContain('<div class="bg--gray-1">');
     expect($html)->toContain('Gray');
 });
 
@@ -35,6 +35,18 @@ it('renders background component with color white', function () {
         'attributes' => new ComponentAttributeBag(['color' => 'white']),
     ])->render();
 
-    expect($html)->toContain('<div class="bg-white">');
+    expect($html)->toContain('<div class="bg--white">');
     expect($html)->toContain('White');
+});
+
+it('renders background component with v3 semantic color primary', function () {
+    $background = new Background;
+    $rendered = $background->render();
+    $html = $rendered->with([
+        'slot' => 'Primary',
+        'attributes' => new ComponentAttributeBag(['color' => 'primary']),
+    ])->render();
+
+    expect($html)->toContain('<div class="bg--primary">');
+    expect($html)->toContain('Primary');
 });
