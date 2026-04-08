@@ -15,6 +15,7 @@ use Bnussbau\TrmnlBlade\View\Components\Layout;
 use Bnussbau\TrmnlBlade\View\Components\Markdown;
 use Bnussbau\TrmnlBlade\View\Components\Mashup;
 use Bnussbau\TrmnlBlade\View\Components\Meta;
+use Bnussbau\TrmnlBlade\View\Components\Progress;
 use Bnussbau\TrmnlBlade\View\Components\RichText;
 use Bnussbau\TrmnlBlade\View\Components\Screen;
 use Bnussbau\TrmnlBlade\View\Components\Table;
@@ -151,6 +152,12 @@ it('can render the mashup component', function () {
     $component = new Mashup;
     $rendered = $component->render();
     expect($rendered->getName())->toBe('trmnl::components.mashup');
+});
+
+it('can render the progress component', function () {
+    $component = new Progress;
+    $rendered = $component->render();
+    expect($rendered->getName())->toBe('trmnl::components.progress');
 });
 
 it('can render the screen component', function () {
