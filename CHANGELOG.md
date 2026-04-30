@@ -2,6 +2,15 @@
 
 All notable changes to `trmnl-blade` will be documented in this file.
 
+## 3.1.0 - 2026-04-30
+
+### What's Changed
+
+* feat: bump `TRMNL_BLADE_FRAMEWORK_VERSION` to 3.1.0
+* feat: added property `fonts` to screen component. Can be set to `trmnl` or `classic`. Defaults to `trmnl`. Details: https://trmnl.com/framework/docs/3.1/font_family
+
+**Full Changelog**: https://github.com/bnussbau/trmnl-blade/compare/3.0.3...3.1.0
+
 ## 3.0.3 - 2026-04-08
 
 ### What's Changed
