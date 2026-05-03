@@ -2,6 +2,15 @@
 
 All notable changes to `trmnl-blade` will be documented in this file.
 
+## 3.1.1 - 2026-05-03
+
+### What's Changed
+
+* feat: bump `TRMNL_BLADE_FRAMEWORK_VERSION` to 3.1.1
+* add boost skill
+
+**Full Changelog**: https://github.com/bnussbau/trmnl-blade/compare/3.1.0...3.1.1
+
 ## 3.1.0 - 2026-04-30
 
 ### What's Changed
