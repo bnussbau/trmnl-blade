@@ -1,6 +1,6 @@
 ---
 name: trmnl-blade-development
-description: Build TRMNL Framework 3.1 Blade UIs with bnussbau/trmnl-blade (x-trmnl:: components), layout structure, tables, charts, mashups, and anti-patterns.
+description: "Build TRMNL Framework 3.1 Blade UIs with bnussbau/trmnl-blade (x-trmnl:: components), layout structure, tables, charts, mashups, and anti-patterns."
 ---
 
 # TRMNL Blade development
