@@ -2,6 +2,17 @@
 
 All notable changes to `trmnl-blade` will be documented in this file.
 
+## 3.1.8 - 2026-07-27
+
+### What's Changed
+
+* feat: bump `TRMNL_BLADE_FRAMEWORK_VERSION` to 3.1.8
+* fix: boost skill header syntax
+
+The release notes for the TRMNL Framework are available at: https://trmnl.com/framework/releases
+
+**Full Changelog**: https://github.com/bnussbau/trmnl-blade/commits/3.1.8.
+
 ## 3.1.1 - 2026-05-03
 
 ### What's Changed
