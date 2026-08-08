@@ -10,10 +10,17 @@ The root component that wraps the entire application.
 
 ### Props
 - `noBleed` (boolean, default: false) - Removes the default screen padding when set to true
+- `darkMode` (boolean, default: false) - Adds `screen--dark-mode` for dark rendering on unthemed screens
+- `theme` (string, optional) - Built-in theme ID: `black-and-yellow`, `dark`, or `white-and-red`. Loads theme CSS and adds `screen--theme-{id}`
+- `deviceVariant` (string, default: `og`) - Device profile class
+- `deviceOrientation` (string, optional) - Orientation modifier
+- `colorDepth` (string, default: `1bit`) - Color depth modifier
+- `scaleLevel` (string, optional) - Scale modifier
+- `fonts` (string, default: `trmnl`) - Font bundle (`trmnl` or `classic`)
 
 ### Example
 ```blade
-<x-trmnl::screen>
+<x-trmnl::screen theme="dark">
     <!-- Your content here -->
 </x-trmnl::screen>
 ```

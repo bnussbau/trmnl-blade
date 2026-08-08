@@ -7,4 +7,13 @@ return [
     'framework_js_version' => env('TRMNL_BLADE_FRAMEWORK_JS_VERSION', null),
     'framework_css_url' => env('TRMNL_BLADE_FRAMEWORK_CSS_URL', null),
     'framework_js_url' => env('TRMNL_BLADE_FRAMEWORK_JS_URL', null),
+    'themes' => [
+        'black-and-yellow',
+        'dark',
+        'white-and-red',
+    ],
+    'theme_urls' => [
+        // override a theme's default
+        // 'dark' => 'https://example.com/themes/dark-theme.css',
+    ],
 ];

@@ -91,8 +91,55 @@ it('renders screen component with darkMode set to true', function () {
         'darkMode' => true,
     ])->render();
 
-    expect($html)->toContain('<div class="screen  dark-mode');
+    expect($html)->toContain('<div class="screen  screen--dark-mode');
     expect($html)->toContain('Test content');
+});
+
+it('renders screen component with theme set to dark', function () {
+    config()->set('trmnl-blade.framework_version', '3.2.0');
+    config()->set('trmnl-blade.framework_css_version', null);
+    config()->set('trmnl-blade.framework_css_url', null);
+    config()->set('trmnl-blade.theme_urls', []);
+
+    $screen = new Screen;
+    $rendered = $screen->render();
+    $html = $rendered->with([
+        'slot' => 'Test content',
+        'theme' => 'dark',
+    ])->render();
+
+    expect($html)->toContain('https://trmnl.com/css/3.2.0/plugins.css');
+    expect($html)->toContain('https://trmnl.com/css/3.2.0/themes/dark-theme.css');
+    expect($html)->toContain('screen--theme-dark');
+    expect($html)->toContain('Test content');
+});
+
+it('does not render theme link or class when theme is null', function () {
+    $screen = new Screen;
+    $rendered = $screen->render();
+    $html = $rendered->with([
+        'slot' => 'Test content',
+        'theme' => null,
+    ])->render();
+
+    expect($html)->not->toContain('themes/');
+    expect($html)->not->toContain('screen--theme-');
+});
+
+it('uses custom theme URL from config', function () {
+    config()->set('trmnl-blade.theme_urls', [
+        'dark' => 'https://cdn.example.com/custom-dark-theme.css',
+    ]);
+
+    $screen = new Screen;
+    $rendered = $screen->render();
+    $html = $rendered->with([
+        'slot' => 'Test content',
+        'theme' => 'dark',
+    ])->render();
+
+    expect($html)->toContain('https://cdn.example.com/custom-dark-theme.css');
+    expect($html)->toContain('screen--theme-dark');
 });
 
 it('renders screen component with noBleed set to false', function () {

@@ -1,6 +1,6 @@
 ---
 name: trmnl-blade-development
-description: "Build TRMNL Framework 3.1 Blade UIs with bnussbau/trmnl-blade (x-trmnl:: components), layout structure, tables, charts, mashups, and anti-patterns."
+description: "Build TRMNL Framework 3.2 Blade UIs with bnussbau/trmnl-blade (x-trmnl:: components), layout structure, tables, charts, themes, mashups, and anti-patterns."
 ---
 
 # TRMNL Blade development
@@ -9,9 +9,9 @@ description: "Build TRMNL Framework 3.1 Blade UIs with bnussbau/trmnl-blade (x-t
 
 Use this skill when editing or creating Blade views that use `bnussbau/trmnl-blade`, `x-trmnl::` components, TRMNL plugin screens, or local TRMNL previews. Do not load this for unrelated Laravel work.
 
-Blade components are prefixed `x-trmnl::` for the official [TRMNL Framework 3.1](https://trmnl.com/framework/docs/3.1). Use these components for framework structure, then use documented TRMNL classes/utilities for fine-grained spacing, typography, color, overflow, responsive behavior, and charts. Do not invent parallel components.
+Blade components are prefixed `x-trmnl::` for the official [TRMNL Framework 3.2](https://trmnl.com/framework/docs/3.2). Use these components for framework structure, then use documented TRMNL classes/utilities for fine-grained spacing, typography, color, overflow, responsive behavior, and charts. Do not invent parallel components.
 
-**Key docs:** [Structure](https://trmnl.com/framework/docs/3.1/structure), [Grid](https://trmnl.com/framework/docs/3.1/grid), [Table](https://trmnl.com/framework/docs/3.1/table), [Chart](https://trmnl.com/framework/docs/3.1/chart), [Tokens](https://trmnl.com/framework/docs/3.1/tokens), [Colors](https://trmnl.com/framework/docs/3.1/colors).
+**Key docs:** [Structure](https://trmnl.com/framework/docs/3.2/structure), [Grid](https://trmnl.com/framework/docs/3.2/grid), [Table](https://trmnl.com/framework/docs/3.2/table), [Chart](https://trmnl.com/framework/docs/3.2/chart), [Themes](https://trmnl.com/framework/docs/3.2/themes), [Tokens](https://trmnl.com/framework/docs/3.2/tokens), [Colors](https://trmnl.com/framework/docs/3.2/colors).
 
 ---
 
@@ -76,7 +76,7 @@ For wrapping grids, add framework classes directly: `class="grid--wrap grid--min
 
 Use `<x-trmnl::table>` with native `<thead>`, `<tbody>`, `<tr>`, `<th>`, `<td>`. Sizes map to framework classes: `base`, `large`, `xlarge`, `small`, `xsmall`; prefer `small` or `xsmall` for dense plugin screens. `condensed` exists as an older alias; do not use it as the first choice.
 
-For predictable rows, clamp long cell content with `data-clamp`. For indexed tables, the framework requires `table--indexed` on the table and `<x-trmnl::meta><span class="index">...</span></x-trmnl::meta>` in the indexed cell. The package table component exposes `size` only, so use native framework table markup when extra table classes such as `table--indexed` are needed. Large tables can rely on framework [Table Overflow](https://trmnl.com/framework/docs/3.1/table_overflow) behavior, including the trailing "and X more" row when content exceeds height.
+For predictable rows, clamp long cell content with `data-clamp`. For indexed tables, the framework requires `table--indexed` on the table and `<x-trmnl::meta><span class="index">...</span></x-trmnl::meta>` in the indexed cell. The package table component exposes `size` only, so use native framework table markup when extra table classes such as `table--indexed` are needed. Large tables can rely on framework [Table Overflow](https://trmnl.com/framework/docs/3.2/table_overflow) behavior, including the trailing "and X more" row when content exceeds height.
 
 **Dense table with clamp and index:**
 
@@ -111,7 +111,7 @@ For predictable rows, clamp long cell content with `data-clamp`. For indexed tab
 
 ## Charts and graphs
 
-This package has **no** `<x-trmnl::chart>` component. Do not invent one. Build chart screens with TRMNL layout components plus raw chart markup/JS following the framework [Chart](https://trmnl.com/framework/docs/3.1/chart) docs.
+This package has **no** `<x-trmnl::chart>` component. Do not invent one. Build chart screens with TRMNL layout components plus raw chart markup/JS following the framework [Chart](https://trmnl.com/framework/docs/3.2/chart) docs.
 
 Chart rules for TRMNL renders:
 
@@ -168,9 +168,31 @@ Mashups place different layouts/plugins on one screen; they are not the default 
 
 ---
 
+## Themes
+
+Framework 3.2 themes are opt-in stylesheets loaded alongside `plugins.css`. Set the `theme` prop on `<x-trmnl::screen>` to apply a built-in theme:
+
+- `black-and-yellow` — high-contrast yellow accent
+- `dark` — full dark color statement (prefer this over `darkMode` for dark rendering)
+- `white-and-red` — white and red accent palette
+
+```blade
+<x-trmnl::screen theme="dark">
+    <x-trmnl::view>
+        <x-trmnl::layout>...</x-trmnl::layout>
+    </x-trmnl::view>
+</x-trmnl::screen>
+```
+
+The screen component loads the matching theme CSS from the TRMNL CDN and emits `screen--theme-{id}`. Themes are a complete color statement: `screen--dark-mode` has no effect while a theme is active unless the theme stylesheet opts into `.screen--theme-{id}.screen--dark-mode`. Use `darkMode` only on unthemed screens. See [Themes](https://trmnl.com/framework/docs/3.2/themes).
+
+Override theme URLs in config via `theme_urls`.
+
+---
+
 ## Component map
 
-**Scaffold:** `screen` — props: `noBleed`, `darkMode`, `deviceVariant` (default `og`), `deviceOrientation`, `colorDepth` (default `1bit`), `scaleLevel`, `fonts` (default `trmnl`). Emits framework CSS/JS from package config.
+**Scaffold:** `screen` — props: `noBleed`, `darkMode` (emits `screen--dark-mode`), `theme` (`black-and-yellow`|`dark`|`white-and-red`), `deviceVariant` (default `og`), `deviceOrientation`, `colorDepth` (default `1bit`), `scaleLevel`, `fonts` (default `trmnl`). Emits framework CSS/JS and optional theme CSS from package config.
 
 **Structure:** `mashup` (`mashupLayout`), `view` (`size`, default `full`), `layout` (`direction`: row|col, `alignment`: left|right|center-x|top|center-y|bottom|center, `stretch`: default → `layout--stretch`, stretch-x, stretch-y), `columns`/`column`, `flex`, `grid`, `col`, `aspect`.
 

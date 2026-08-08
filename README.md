@@ -65,11 +65,13 @@ This is the contents of the published config file:
 
 ```php
 return [
-    'framework_version' => env('TRMNL_BLADE_FRAMEWORK_VERSION', '3.0.3'),
+    'framework_version' => env('TRMNL_BLADE_FRAMEWORK_VERSION', '3.2.0'),
     'framework_css_version' => env('TRMNL_BLADE_FRAMEWORK_CSS_VERSION', null),
     'framework_js_version' => env('TRMNL_BLADE_FRAMEWORK_JS_VERSION', null),
     'framework_css_url' => env('TRMNL_BLADE_FRAMEWORK_CSS_URL', null),
     'framework_js_url' => env('TRMNL_BLADE_FRAMEWORK_JS_URL', null),
+    'themes' => ['black-and-yellow', 'dark', 'white-and-red'],
+    'theme_urls' => [], // override a theme's default url
 ];
 ```
 
