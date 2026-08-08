@@ -2,6 +2,19 @@
 
 All notable changes to `trmnl-blade` will be documented in this file.
 
+## 3.2.0 - 2026-08-08
+
+### What's Changed
+
+* feat: bump `TRMNL_BLADE_FRAMEWORK_VERSION` to 3.2.0
+* feat: add Framework theme support via `theme` prop on `<x-trmnl::screen>` (`black-and-yellow`, `dark`, `white-and-red`)
+* feat: add `FrameworkAssets` helper for CSS, JS, and theme URL resolution
+* fix: `darkMode` now emits `screen--dark-mode`
+
+The release notes for the TRMNL Framework are available at: https://trmnl.com/framework/releases
+
+**Full Changelog**: https://github.com/bnussbau/trmnl-blade/compare/3.1.8...3.2.0
+
 ## 3.1.8 - 2026-07-27
 
 ### What's Changed
