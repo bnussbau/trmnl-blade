@@ -3,6 +3,4 @@
     $progressRootClass = $variant === 'dots' ? 'progress-dots' : 'progress-bar';
     $progressClass = $progressRootClass.(isset($size) ? ' '.$progressRootClass.'--'.$size : '');
 @endphp
-<div {{ $attributes->merge(['class' => $progressClass]) }}>
-    {{ $slot }}
-</div>
+<div {{ $attributes->merge(['class' => $progressClass]) }}>{{ $slot }}</div>

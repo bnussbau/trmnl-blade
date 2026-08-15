@@ -20,6 +20,4 @@
     }
 @endphp
 
-<div {{ $attributes->merge(['class' => implode(' ', $classes)]) }}>
-    {{ $slot }}
-</div>
+<div {{ $attributes->merge(['class' => implode(' ', $classes)]) }}>{{ $slot }}</div>

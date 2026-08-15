@@ -1,3 +1,1 @@
-<div class="divider">
-    {{ $slot }}
-</div>
+<div class="divider">{{ $slot }}</div>

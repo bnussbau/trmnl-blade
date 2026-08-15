@@ -1,5 +1,3 @@
-@props(['size'=>'full'])
+@props(['size' => 'full'])
 
-<div class="view view--{{$size}}">
-    {{ $slot }}
-</div>
+<div class="view view--{{ $size }}">{{ $slot }}</div>

@@ -1,3 +1,1 @@
-<div class="track">
-    {{ $slot }}
-</div>
+<div class="track">{{ $slot }}</div>

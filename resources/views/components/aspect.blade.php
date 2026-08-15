@@ -1,4 +1,2 @@
 @props(['ratio' => 'auto'])
-<span class="aspect--{{ $ratio }}">
-    {{ $slot }}
-</span>
+<span class="aspect--{{ $ratio }}"> {{ $slot }} </span>

@@ -1,3 +1,1 @@
-<div class="meta">
-    {{ $slot }}
-</div>
+<div class="meta">{{ $slot }}</div>
