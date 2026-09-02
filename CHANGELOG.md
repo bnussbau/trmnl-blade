@@ -2,6 +2,18 @@
 
 All notable changes to `trmnl-blade` will be documented in this file.
 
+## 3.3.1 - 2026-09-02
+
+### What's Changed
+
+* feat: bump `TRMNL_BLADE_FRAMEWORK_VERSION` to 3.3.1
+* feat: add `<x-trmnl::map>` for Framework 3.3 maps (place-map auto-init, overlay slot, optional center marker)
+* feat: add `<x-trmnl::chart>` component
+
+The release notes for the TRMNL Framework are available at: https://trmnl.com/framework/releases
+
+**Full Changelog**: https://github.com/bnussbau/trmnl-blade/compare/3.2.0...3.3.1
+
 ## 3.2.0 - 2026-08-08
 
 ### What's Changed
