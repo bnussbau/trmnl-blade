@@ -9,6 +9,8 @@ return [
     'framework_js_url' => env('TRMNL_BLADE_FRAMEWORK_JS_URL', null),
     'maplibre_js_url' => env('TRMNL_BLADE_MAPLIBRE_JS_URL', 'https://trmnl.com/js/maplibre-gl/5.24.0/maplibre-gl.js'),
     'maplibre_css_url' => env('TRMNL_BLADE_MAPLIBRE_CSS_URL', 'https://trmnl.com/js/maplibre-gl/5.24.0/maplibre-gl.css'),
+    'highcharts_js_url' => env('TRMNL_BLADE_HIGHCHARTS_JS_URL', 'https://trmnl.com/js/highcharts/12.3.0/highcharts.js'),
+    'highcharts_pattern_fill_url' => env('TRMNL_BLADE_HIGHCHARTS_PATTERN_FILL_URL', 'https://trmnl.com/js/highcharts/12.3.0/pattern-fill.js'),
     'themes' => [
         'black-and-yellow',
         'dark',

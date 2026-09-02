@@ -32,7 +32,7 @@ Blade components are prefixed `x-trmnl::` for the official [TRMNL Framework 3.2]
 - **Columns:** repeated same-type content where the framework distributes columns/overflow.
 - **Table:** structured rows/columns of comparable data.
 - **Map:** `<x-trmnl::map>` for a still vector map. Pass `id`, `preset`, `center` (`[lng, lat]`), and `zoom` for a place-map. Slot overlay cards; `marker` for a center dot. Omit `center`/`zoom` and write `TRMNLMaps` JS for routes. Do not invent route/polyline/`fit` props.
-- **Chart/graph:** no Blade component; use framework-compatible chart markup/JS inside layout.
+- **Chart/graph:** `<x-trmnl::chart>` for an empty Highcharts container. Pass `id`. Write `TRMNLCharts` JS yourself. Do not wrap Highcharts options as Blade props.
 
 ---
 
@@ -134,19 +134,7 @@ Do not wrap `route()`, polylines, `fit()`, or tiles as Blade props. For those, o
 
 ## Charts and graphs
 
-This package has **no** `<x-trmnl::chart>` component. Do not invent one. Build chart screens with TRMNL layout components plus raw chart markup/JS following the framework [Chart](https://trmnl.com/framework/docs/3.2/chart) docs.
-
-Chart rules for TRMNL renders:
-
-- Use a clear stat/header grid (`value`, `label`, `description`) around the graph.
-- Any CDN JS chart library may be used; TRMNL docs use Highcharts and Chartkick.
-- Disable animations, hover states, tooltips, and credits where possible.
-- Use transparent chart backgrounds, black/grayscale colors, and pattern fills for multi-series 1-bit displays.
-- Prefer fixed or container-filling height; if using Highcharts/Chartkick, docs recommend `height: null` for fill behavior or explicit pixel heights when needed.
-- Ensure chart initialization completes before TRMNL captures the render.
-- Use `<x-trmnl::progress>` only for simple bar/dot progress, not as a full chart substitute.
-
-**Chart screen skeleton:**
+Use `<x-trmnl::chart>` inside layout. Highcharts and pattern-fill are injected once above the container. See [Chart](https://trmnl.com/framework/docs/3.3/chart).
 
 ```blade
 <x-trmnl::layout direction="col" stretch="default">
@@ -165,23 +153,39 @@ Chart rules for TRMNL renders:
         </x-trmnl::item>
     </x-trmnl::grid>
 
-    <div id="traffic-chart"></div>
+    <x-trmnl::chart id="traffic-chart" />
 </x-trmnl::layout>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    Highcharts.chart('traffic-chart', {
-        chart: { type: 'spline', animation: false, backgroundColor: 'transparent', height: 260 },
-        title: { text: null },
-        legend: { enabled: false },
-        tooltip: { enabled: false },
-        credits: { enabled: false },
-        plotOptions: { series: { animation: false, enableMouseTracking: false, marker: { enabled: false } } },
-        series: [{ data: @json($series), color: '#000000', lineWidth: 4 }]
+window.trmnlChartsWhenReady(function () {
+    var el = "traffic-chart";
+    TRMNLCharts.watch(el, function () {
+        var px = function (value) { return TRMNLPaint.px(value, { el: el }); };
+        var chart = Highcharts.chart(el, TRMNLCharts.merge(TRMNLCharts.options({ el: el }), {
+            chart: { type: "spline", height: px(260) },
+            series: [{
+                data: @json($series),
+                color: TRMNLCharts.series(0, 1, { el: el }),
+                lineWidth: px(4)
+            }]
+        }));
+        TRMNLCharts.applySwatches({ el: el });
+        return chart;
     });
 });
 </script>
 ```
+
+Chart rules for TRMNL renders:
+
+- Use a clear stat/header grid (`value`, `label`, `description`) around the graph.
+- Size the container with extra classes (e.g. `class="h--48"`); `height: null` fills remaining space.
+- Disable animations, or the screenshot service may capture a partial chart (`TRMNLCharts.options()` already does this).
+- Use `TRMNLCharts.series()` for colors so the chart follows the device and theme. Call `applySwatches()` when using `data-chart-series` legend marks.
+- Load `highcharts-more.js` yourself for gauges. Load Chartkick yourself if you use it.
+- Use `<x-trmnl::progress>` only for simple bar/dot progress, not as a full chart substitute.
+
+Do not wrap Highcharts options (`type`, `series`, `height`, axes) as Blade props.
 
 ---
 
@@ -219,13 +223,13 @@ Override theme URLs in config via `theme_urls`.
 
 **Structure:** `mashup` (`mashupLayout`), `view` (`size`, default `full`), `layout` (`direction`: row|col, `alignment`: left|right|center-x|top|center-y|bottom|center, `stretch`: default → `layout--stretch`, stretch-x, stretch-y), `columns`/`column`, `flex`, `grid`, `col`, `aspect`.
 
-**Content/UI:** `richtext` (`align`, `gapSize`), `content` (`contentAlignment`, `textAlignment`, `gapSize`), `item`, `table`, `map` (`id` required, `preset` default `streets`, optional `center` `[lng, lat]`, `zoom`, `marker`; overlay slot), `progress` (`variant`: bar|dots, optional `size`) + `track`, `meta`, `divider`, `background` (`color` → `bg--{color}`).
+**Content/UI:** `richtext` (`align`, `gapSize`), `content` (`contentAlignment`, `textAlignment`, `gapSize`), `item`, `table`, `map` (`id` required, `preset` default `streets`, optional `center` `[lng, lat]`, `zoom`, `marker`; overlay slot), `chart` (`id` required; Highcharts injected once; write `TRMNLCharts` JS yourself), `progress` (`variant`: bar|dots, optional `size`) + `track`, `meta`, `divider`, `background` (`color` → `bg--{color}`).
 
 **Typography:** `text` (`alignment`, `shading`), `title` (`size=small` optional), `value` (`size`, `textStroke`), `label` (`variant`, `size`), `description`, `clamp` (`lines`, default `1`).
 
 **Chrome:** `title-bar` (`title`, optional `image` URL or `image="inline"` with slot, optional `instance`).
 
-**Do not use:** `<x-trmnl::markdown>` (deprecated; use `richtext`) or invented components like `<x-trmnl::chart>`. Do not add route/polyline/`fit` props to `map`.
+**Do not use:** `<x-trmnl::markdown>` (deprecated; use `richtext`). Do not add route/polyline/`fit` props to `map`. Do not wrap Highcharts options as Blade props on `chart`.
 
 ---
 

@@ -62,6 +62,40 @@ Blade Compontens can help you generate markup code. Alternatively, you can just 
 
 Using `<x-trmnl::map>` injects MapLibre GL JS once above the map. Pass `center` (`[lng, lat]`) and `zoom` to auto-init a still place-map. Omit them to supply your own `TRMNLMaps` JS for routes. Overlay cards go in the slot; `marker` draws a dot at `center`.
 
+### Chart Example
+
+```blade
+<x-trmnl::screen>
+    <x-trmnl::view>
+        <x-trmnl::layout direction="col">
+            <x-trmnl::chart id="traffic-chart" />
+        </x-trmnl::layout>
+        <x-trmnl::title-bar title="Analytics" instance="Traffic"/>
+    </x-trmnl::view>
+</x-trmnl::screen>
+
+<script>
+window.trmnlChartsWhenReady(function () {
+  var el = "traffic-chart";
+  TRMNLCharts.watch(el, function () {
+    var px = function (value) { return TRMNLPaint.px(value, { el: el }); };
+    var chart = Highcharts.chart(el, TRMNLCharts.merge(TRMNLCharts.options({ el: el }), {
+      chart: { type: "spline", height: px(260) },
+      series: [{
+        data: @json($series),
+        color: TRMNLCharts.series(0, 1, { el: el }),
+        lineWidth: px(4)
+      }]
+    }));
+    TRMNLCharts.applySwatches({ el: el });
+    return chart;
+  });
+});
+</script>
+```
+
+Using `<x-trmnl::chart>` injects Highcharts and pattern-fill once above the container. Write your own `TRMNLCharts` JS (`watch`, `options`, `series`). Do not wrap Highcharts options as Blade props. Gauges and Chartkick stay in your own `<script>` tags.
+
 ## Installation
 
 You can install the package via composer:
@@ -87,6 +121,8 @@ return [
     'framework_js_url' => env('TRMNL_BLADE_FRAMEWORK_JS_URL', null),
     'maplibre_js_url' => env('TRMNL_BLADE_MAPLIBRE_JS_URL', 'https://trmnl.com/js/maplibre-gl/5.24.0/maplibre-gl.js'),
     'maplibre_css_url' => env('TRMNL_BLADE_MAPLIBRE_CSS_URL', 'https://trmnl.com/js/maplibre-gl/5.24.0/maplibre-gl.css'),
+    'highcharts_js_url' => env('TRMNL_BLADE_HIGHCHARTS_JS_URL', 'https://trmnl.com/js/highcharts/12.3.0/highcharts.js'),
+    'highcharts_pattern_fill_url' => env('TRMNL_BLADE_HIGHCHARTS_PATTERN_FILL_URL', 'https://trmnl.com/js/highcharts/12.3.0/pattern-fill.js'),
     'themes' => ['black-and-yellow', 'dark', 'white-and-red'],
     'theme_urls' => [], // override a theme's default url
 ];

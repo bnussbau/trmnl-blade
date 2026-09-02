@@ -212,6 +212,13 @@ Still vector map via MapLibre GL JS and `TRMNLMaps`. Loads MapLibre once above t
 - Slot: overlay children inside the map container (e.g. a floating card)
 - Escape hatch: omit `center`/`zoom` and write your own `TRMNLMaps` JS for routes/`fit()`
 
+### Chart
+Empty chart container via Highcharts and `TRMNLCharts`. Loads Highcharts + pattern-fill once above the container. Does not auto-init.
+
+- Props:
+  - `id` (string, required) - Container id
+- Escape hatch: write your own `TRMNLCharts` JS (`watch`, `options`, `series`). Do not wrap Highcharts options as Blade props. Load `highcharts-more.js` or Chartkick yourself for gauges / Chartkick.
+
 ### Example
 ```blade
 <x-trmnl::richtext align="center" gapSize="large">
@@ -233,5 +240,8 @@ Still vector map via MapLibre GL JS and `TRMNLMaps`. Loads MapLibre once above t
         <!-- card contents -->
     </div>
 </x-trmnl::map>
+
+<x-trmnl::chart id="traffic-chart" />
+<x-trmnl::chart id="sales-chart" class="h--48" />
 ```
 </details>

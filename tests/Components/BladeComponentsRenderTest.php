@@ -1,6 +1,7 @@
 <?php
 
 use Bnussbau\TrmnlBlade\View\Components\Background;
+use Bnussbau\TrmnlBlade\View\Components\Chart;
 use Bnussbau\TrmnlBlade\View\Components\Clamp;
 use Bnussbau\TrmnlBlade\View\Components\Col;
 use Bnussbau\TrmnlBlade\View\Components\Column;
@@ -171,6 +172,12 @@ it('can render the map component', function () {
     $component = new Map;
     $rendered = $component->render();
     expect($rendered->getName())->toBe('trmnl::components.map');
+});
+
+it('can render the chart component', function () {
+    $component = new Chart;
+    $rendered = $component->render();
+    expect($rendered->getName())->toBe('trmnl::components.chart');
 });
 
 it('can render the richtext component', function () {
