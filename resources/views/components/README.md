@@ -200,6 +200,18 @@ Complex UI components for specific use cases.
 - Props:
   - `size` (string, optional) - Table size (e.g. `condensed`)
 
+### Map
+Still vector map via MapLibre GL JS and `TRMNLMaps`. Loads MapLibre once above the map container.
+
+- Props:
+  - `id` (string, required) - Container id
+  - `preset` (string, default: `streets`) - `streets`, `minimal`, `outline`, or `blank`
+  - `center` (array, optional) - `[lng, lat]`. Auto-init only when `center` and `zoom` are both set
+  - `zoom` (number, optional) - Integer zoom
+  - `marker` (boolean, default: false) - Draw a `TRMNLMaps.dot()` at `center` on load
+- Slot: overlay children inside the map container (e.g. a floating card)
+- Escape hatch: omit `center`/`zoom` and write your own `TRMNLMaps` JS for routes/`fit()`
+
 ### Example
 ```blade
 <x-trmnl::richtext align="center" gapSize="large">
@@ -213,5 +225,13 @@ Complex UI components for specific use cases.
 <x-trmnl::table size="condensed">
     <!-- Table content -->
 </x-trmnl::table>
+
+<x-trmnl::map id="map-streets" preset="streets" :center="[-84.3885, 33.7554]" :zoom="13" />
+
+<x-trmnl::map id="map-overlay" preset="streets" :center="$stadium" :zoom="15" :marker="true">
+    <div class="absolute top--2 left--2 z--2 p--4 w--max-60 bg--canvas outline outline--muted">
+        <!-- card contents -->
+    </div>
+</x-trmnl::map>
 ```
 </details>

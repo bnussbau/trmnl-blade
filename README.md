@@ -47,6 +47,21 @@ Blade Compontens can help you generate markup code. Alternatively, you can just 
 </x-trmnl::screen>
 ```
 
+### Map Example
+
+```blade
+<x-trmnl::screen>
+    <x-trmnl::view>
+        <x-trmnl::layout direction="col">
+            <x-trmnl::map id="map-streets" preset="streets" :center="[-84.3885, 33.7554]" :zoom="13" />
+        </x-trmnl::layout>
+        <x-trmnl::title-bar title="Map" instance="Streets"/>
+    </x-trmnl::view>
+</x-trmnl::screen>
+```
+
+Using `<x-trmnl::map>` injects MapLibre GL JS once above the map. Pass `center` (`[lng, lat]`) and `zoom` to auto-init a still place-map. Omit them to supply your own `TRMNLMaps` JS for routes. Overlay cards go in the slot; `marker` draws a dot at `center`.
+
 ## Installation
 
 You can install the package via composer:
@@ -65,11 +80,13 @@ This is the contents of the published config file:
 
 ```php
 return [
-    'framework_version' => env('TRMNL_BLADE_FRAMEWORK_VERSION', '3.2.0'),
+    'framework_version' => env('TRMNL_BLADE_FRAMEWORK_VERSION', '3.3.1'),
     'framework_css_version' => env('TRMNL_BLADE_FRAMEWORK_CSS_VERSION', null),
     'framework_js_version' => env('TRMNL_BLADE_FRAMEWORK_JS_VERSION', null),
     'framework_css_url' => env('TRMNL_BLADE_FRAMEWORK_CSS_URL', null),
     'framework_js_url' => env('TRMNL_BLADE_FRAMEWORK_JS_URL', null),
+    'maplibre_js_url' => env('TRMNL_BLADE_MAPLIBRE_JS_URL', 'https://trmnl.com/js/maplibre-gl/5.24.0/maplibre-gl.js'),
+    'maplibre_css_url' => env('TRMNL_BLADE_MAPLIBRE_CSS_URL', 'https://trmnl.com/js/maplibre-gl/5.24.0/maplibre-gl.css'),
     'themes' => ['black-and-yellow', 'dark', 'white-and-red'],
     'theme_urls' => [], // override a theme's default url
 ];

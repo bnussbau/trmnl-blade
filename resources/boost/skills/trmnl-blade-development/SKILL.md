@@ -21,7 +21,7 @@ Blade components are prefixed `x-trmnl::` for the official [TRMNL Framework 3.2]
 
 - **Local/preview pages:** `<x-trmnl::screen>` → `<x-trmnl::view>` → exactly one `<x-trmnl::layout>` per view. Optional `<x-trmnl::title-bar>` is a sibling of layout inside the view.
 - **TRMNL-hosted plugin bodies:** the platform may provide screen/view. Emit only `<x-trmnl::layout>` (+ optional title bar) unless the user asks for a full preview scaffold.
-- Put grids, columns, flex, tables, rich text, items, stats, and chart containers **inside** the layout. Never replace the layout with content.
+- Put grids, columns, flex, tables, rich text, items, stats, maps, and chart containers **inside** the layout. Never replace the layout with content.
 
 ---
 
@@ -31,6 +31,7 @@ Blade components are prefixed `x-trmnl::` for the official [TRMNL Framework 3.2]
 - **Flex:** row/column alignment inside a region or grid cell. Small groups whose size follows content.
 - **Columns:** repeated same-type content where the framework distributes columns/overflow.
 - **Table:** structured rows/columns of comparable data.
+- **Map:** `<x-trmnl::map>` for a still vector map. Pass `id`, `preset`, `center` (`[lng, lat]`), and `zoom` for a place-map. Slot overlay cards; `marker` for a center dot. Omit `center`/`zoom` and write `TRMNLMaps` JS for routes. Do not invent route/polyline/`fit` props.
 - **Chart/graph:** no Blade component; use framework-compatible chart markup/JS inside layout.
 
 ---
@@ -106,6 +107,28 @@ For predictable rows, clamp long cell content with `data-clamp`. For indexed tab
     </tbody>
 </table>
 ```
+
+---
+
+## Maps
+
+Use `<x-trmnl::map>` inside layout. MapLibre is injected once above the map container. See [Map](https://trmnl.com/framework/docs/3.3/map).
+
+```blade
+<x-trmnl::layout direction="col">
+    <x-trmnl::map id="map-streets" preset="streets" :center="[-84.3885, 33.7554]" :zoom="13" />
+</x-trmnl::layout>
+```
+
+```blade
+<x-trmnl::map id="map-overlay" preset="streets" :center="$stadium" :zoom="15" :marker="true">
+    <div class="absolute top--2 left--2 z--2 p--4 w--max-60 bg--canvas outline outline--muted">
+        {{-- overlay card --}}
+    </div>
+</x-trmnl::map>
+```
+
+Do not wrap `route()`, polylines, `fit()`, or tiles as Blade props. For those, omit `center`/`zoom` and call `TRMNLMaps` yourself.
 
 ---
 
@@ -196,13 +219,13 @@ Override theme URLs in config via `theme_urls`.
 
 **Structure:** `mashup` (`mashupLayout`), `view` (`size`, default `full`), `layout` (`direction`: row|col, `alignment`: left|right|center-x|top|center-y|bottom|center, `stretch`: default → `layout--stretch`, stretch-x, stretch-y), `columns`/`column`, `flex`, `grid`, `col`, `aspect`.
 
-**Content/UI:** `richtext` (`align`, `gapSize`), `content` (`contentAlignment`, `textAlignment`, `gapSize`), `item`, `table`, `progress` (`variant`: bar|dots, optional `size`) + `track`, `meta`, `divider`, `background` (`color` → `bg--{color}`).
+**Content/UI:** `richtext` (`align`, `gapSize`), `content` (`contentAlignment`, `textAlignment`, `gapSize`), `item`, `table`, `map` (`id` required, `preset` default `streets`, optional `center` `[lng, lat]`, `zoom`, `marker`; overlay slot), `progress` (`variant`: bar|dots, optional `size`) + `track`, `meta`, `divider`, `background` (`color` → `bg--{color}`).
 
 **Typography:** `text` (`alignment`, `shading`), `title` (`size=small` optional), `value` (`size`, `textStroke`), `label` (`variant`, `size`), `description`, `clamp` (`lines`, default `1`).
 
 **Chrome:** `title-bar` (`title`, optional `image` URL or `image="inline"` with slot, optional `instance`).
 
-**Do not use:** `<x-trmnl::markdown>` (deprecated; use `richtext`) or invented components like `<x-trmnl::chart>`.
+**Do not use:** `<x-trmnl::markdown>` (deprecated; use `richtext`) or invented components like `<x-trmnl::chart>`. Do not add route/polyline/`fit` props to `map`.
 
 ---
 

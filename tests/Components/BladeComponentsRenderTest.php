@@ -12,6 +12,7 @@ use Bnussbau\TrmnlBlade\View\Components\Grid;
 use Bnussbau\TrmnlBlade\View\Components\Item;
 use Bnussbau\TrmnlBlade\View\Components\Label;
 use Bnussbau\TrmnlBlade\View\Components\Layout;
+use Bnussbau\TrmnlBlade\View\Components\Map;
 use Bnussbau\TrmnlBlade\View\Components\Markdown;
 use Bnussbau\TrmnlBlade\View\Components\Mashup;
 use Bnussbau\TrmnlBlade\View\Components\Meta;
@@ -164,6 +165,12 @@ it('can render the screen component', function () {
     $component = new Screen;
     $rendered = $component->render();
     expect($rendered->getName())->toBe('trmnl::components.screen');
+});
+
+it('can render the map component', function () {
+    $component = new Map;
+    $rendered = $component->render();
+    expect($rendered->getName())->toBe('trmnl::components.map');
 });
 
 it('can render the richtext component', function () {
