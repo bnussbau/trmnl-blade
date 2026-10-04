@@ -2,6 +2,7 @@
 
 // config for Bnussbau/TrmnlBlade
 return [
+    'framework_base_url' => env('TRMNL_BLADE_FRAMEWORK_BASE_URL', 'https://trmnl.com'),
     'framework_version' => env('TRMNL_BLADE_FRAMEWORK_VERSION', '3.3.1'),
     'framework_css_version' => env('TRMNL_BLADE_FRAMEWORK_CSS_VERSION', null),
     'framework_js_version' => env('TRMNL_BLADE_FRAMEWORK_JS_VERSION', null),
@@ -10,6 +11,7 @@ return [
     'maplibre_js_url' => env('TRMNL_BLADE_MAPLIBRE_JS_URL', 'https://trmnl.com/js/maplibre-gl/5.24.0/maplibre-gl.js'),
     'maplibre_css_url' => env('TRMNL_BLADE_MAPLIBRE_CSS_URL', 'https://trmnl.com/js/maplibre-gl/5.24.0/maplibre-gl.css'),
     'highcharts_js_url' => env('TRMNL_BLADE_HIGHCHARTS_JS_URL', 'https://trmnl.com/js/highcharts/12.3.0/highcharts.js'),
+    'chartkick_js_url' => env('TRMNL_BLADE_CHARTKICK_JS_URL', 'https://trmnl.com/js/chartkick/5.0.1/chartkick.min.js'),
     'highcharts_pattern_fill_url' => env('TRMNL_BLADE_HIGHCHARTS_PATTERN_FILL_URL', 'https://trmnl.com/js/highcharts/12.3.0/pattern-fill.js'),
     'themes' => [
         'black-and-yellow',

@@ -153,3 +153,23 @@ it('renders screen component with noBleed set to false', function () {
     expect($html)->toContain('<div class="screen');
     expect($html)->toContain('Test content');
 });
+
+it('renders a pinned framework version from a custom asset host', function () {
+    config()->set('trmnl-blade.framework_base_url', 'https://assets.example.com');
+    config()->set('trmnl-blade.framework_css_version', '3.3.1');
+    config()->set('trmnl-blade.framework_js_version', '3.3.1');
+
+    $html = (new Screen)->render()->with([
+        'slot' => '',
+        'frameworkVersion' => '2.3.7',
+        'theme' => 'dark',
+    ])->render();
+
+    preg_match_all('/(?:href|src)="(https:\/\/assets\.example\.com[^\"]+)"/', $html, $matches);
+
+    expect($matches[1])->toBe([
+        'https://assets.example.com/css/2.3.7/plugins.css',
+        'https://assets.example.com/css/2.3.7/themes/dark-theme.css',
+        'https://assets.example.com/js/2.3.7/plugins.js',
+    ]);
+});

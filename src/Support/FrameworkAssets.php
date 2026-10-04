@@ -6,31 +6,31 @@ use InvalidArgumentException;
 
 class FrameworkAssets
 {
-    public static function cssUrl(): string
+    public static function cssUrl(?string $version = null): string
     {
         if ($url = config('trmnl-blade.framework_css_url')) {
             return $url;
         }
 
-        $version = config('trmnl-blade.framework_css_version')
+        $version ??= config('trmnl-blade.framework_css_version')
             ?? config('trmnl-blade.framework_version', '3.2.0');
 
-        return "https://trmnl.com/css/{$version}/plugins.css";
+        return static::baseUrl()."/css/{$version}/plugins.css";
     }
 
-    public static function jsUrl(): string
+    public static function jsUrl(?string $version = null): string
     {
         if ($url = config('trmnl-blade.framework_js_url')) {
             return $url;
         }
 
-        $version = config('trmnl-blade.framework_js_version')
+        $version ??= config('trmnl-blade.framework_js_version')
             ?? config('trmnl-blade.framework_version', '3.2.0');
 
-        return "https://trmnl.com/js/{$version}/plugins.js";
+        return static::baseUrl()."/js/{$version}/plugins.js";
     }
 
-    public static function themeCssUrl(?string $theme): ?string
+    public static function themeCssUrl(?string $theme, ?string $version = null): ?string
     {
         if ($theme === null || $theme === '') {
             return null;
@@ -46,10 +46,15 @@ class FrameworkAssets
             return dirname($cssUrl)."/themes/{$theme}-theme.css";
         }
 
-        $version = config('trmnl-blade.framework_css_version')
+        $version ??= config('trmnl-blade.framework_css_version')
             ?? config('trmnl-blade.framework_version', '3.2.0');
 
-        return "https://trmnl.com/css/{$version}/themes/{$theme}-theme.css";
+        return static::baseUrl()."/css/{$version}/themes/{$theme}-theme.css";
+    }
+
+    protected static function baseUrl(): string
+    {
+        return rtrim(config('trmnl-blade.framework_base_url', 'https://trmnl.com'), '/');
     }
 
     protected static function validateTheme(string $theme): void
