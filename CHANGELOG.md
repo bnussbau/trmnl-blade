@@ -2,6 +2,19 @@
 
 All notable changes to `trmnl-blade` will be documented in this file.
 
+## 3.4.0 - 2026-10-07
+
+### What's Changed
+
+* feat: bump `TRMNL_BLADE_FRAMEWORK_VERSION` to 3.4.0
+* feat: support self-hosted framework assets by @iainlane in https://github.com/bnussbau/trmnl-blade/pull/18
+
+### New Contributors
+
+* @iainlane made their first contribution in https://github.com/bnussbau/trmnl-blade/pull/18
+
+**Full Changelog**: https://github.com/bnussbau/trmnl-blade/compare/3.3.1...3.4.0
+
 ## 3.3.1 - 2026-09-02
 
 ### What's Changed
