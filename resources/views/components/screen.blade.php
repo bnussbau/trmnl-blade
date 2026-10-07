@@ -1,5 +1,6 @@
 @props([
     'noBleed' => false,
+    'frameworkVersion' => null,
     'darkMode' => false,
     'theme' => null,
     'deviceVariant' => 'og',
@@ -14,11 +15,11 @@
     <meta charset="utf-8" />
     <link rel="preconnect" href="https://fonts.bunny.net" />
     <link href="https://fonts.bunny.net/css?family=Inter:300,400,500" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ \Bnussbau\TrmnlBlade\Support\FrameworkAssets::cssUrl() }}" />
-    @if ($themeCssUrl = \Bnussbau\TrmnlBlade\Support\FrameworkAssets::themeCssUrl($theme))
+    <link rel="stylesheet" href="{{ \Bnussbau\TrmnlBlade\Support\FrameworkAssets::cssUrl($frameworkVersion) }}" />
+    @if ($themeCssUrl = \Bnussbau\TrmnlBlade\Support\FrameworkAssets::themeCssUrl($theme, $frameworkVersion))
         <link rel="stylesheet" href="{{ $themeCssUrl }}" />
     @endif
-    <script src="{{ \Bnussbau\TrmnlBlade\Support\FrameworkAssets::jsUrl() }}"></script>
+    <script src="{{ \Bnussbau\TrmnlBlade\Support\FrameworkAssets::jsUrl($frameworkVersion) }}"></script>
     <title>{{ $title ?? config('app.name') }}</title>
 </head>
 <body class="environment trmnl">
