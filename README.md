@@ -115,7 +115,7 @@ This is the contents of the published config file:
 ```php
 return [
     'framework_base_url' => env('TRMNL_BLADE_FRAMEWORK_BASE_URL', 'https://trmnl.com'),
-    'framework_version' => env('TRMNL_BLADE_FRAMEWORK_VERSION', '3.3.1'),
+    'framework_version' => env('TRMNL_BLADE_FRAMEWORK_VERSION', '3.4.0'),
     'framework_css_version' => env('TRMNL_BLADE_FRAMEWORK_CSS_VERSION', null),
     'framework_js_version' => env('TRMNL_BLADE_FRAMEWORK_JS_VERSION', null),
     'framework_css_url' => env('TRMNL_BLADE_FRAMEWORK_CSS_URL', null),

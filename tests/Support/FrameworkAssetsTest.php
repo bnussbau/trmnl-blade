@@ -64,7 +64,7 @@ it('throws for unknown theme', function () {
 })->throws(InvalidArgumentException::class, 'Unknown TRMNL theme [neon-pink]');
 
 it('resolves versioned assets from the configured framework base URL', function (array $settings, ?string $version, array $expected) {
-    config()->set('trmnl-blade.framework_version', '3.3.1');
+    config()->set('trmnl-blade.framework_version', '3.4.0');
     config()->set('trmnl-blade.framework_css_version', '3.2.0');
     config()->set('trmnl-blade.framework_js_version', '3.1.0');
     config()->set('trmnl-blade.framework_css_url', null);
