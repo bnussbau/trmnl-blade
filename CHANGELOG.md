@@ -2,6 +2,15 @@
 
 All notable changes to `trmnl-blade` will be documented in this file.
 
+## 3.4.4 - 2026-10-30
+
+### What's Changed
+
+* feat: bump TRMNL_BLADE_FRAMEWORK_VERSION to 3.4.4
+* chore: added PHP 8.5, removed Laravel 11 from the test matrix
+
+**Full Changelog**: https://github.com/bnussbau/trmnl-blade/compare/3.4.0...3.4.4
+
 ## 3.4.0 - 2026-10-07
 
 ### What's Changed
