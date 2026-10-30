@@ -1,6 +1,6 @@
 ---
 name: trmnl-blade-development
-description: "Build TRMNL Framework 3.2 Blade UIs with bnussbau/trmnl-blade (x-trmnl:: components), layout structure, tables, charts, themes, mashups, and anti-patterns."
+description: "Build TRMNL Framework 3.4 Blade UIs with bnussbau/trmnl-blade (x-trmnl:: components), layout structure, tables, charts, themes, mashups, and anti-patterns."
 ---
 
 # TRMNL Blade development
@@ -9,9 +9,9 @@ description: "Build TRMNL Framework 3.2 Blade UIs with bnussbau/trmnl-blade (x-t
 
 Use this skill when editing or creating Blade views that use `bnussbau/trmnl-blade`, `x-trmnl::` components, TRMNL plugin screens, or local TRMNL previews. Do not load this for unrelated Laravel work.
 
-Blade components are prefixed `x-trmnl::` for the official [TRMNL Framework 3.2](https://trmnl.com/framework/docs/3.2). Use these components for framework structure, then use documented TRMNL classes/utilities for fine-grained spacing, typography, color, overflow, responsive behavior, and charts. Do not invent parallel components.
+Blade components are prefixed `x-trmnl::` for the official [TRMNL Framework 3.4](https://trmnl.com/framework/docs/3.4). Use these components for framework structure, then use documented TRMNL classes/utilities for fine-grained spacing, typography, color, overflow, responsive behavior, and charts. Do not invent parallel components.
 
-**Key docs:** [Structure](https://trmnl.com/framework/docs/3.2/structure), [Grid](https://trmnl.com/framework/docs/3.2/grid), [Table](https://trmnl.com/framework/docs/3.2/table), [Chart](https://trmnl.com/framework/docs/3.2/chart), [Themes](https://trmnl.com/framework/docs/3.2/themes), [Tokens](https://trmnl.com/framework/docs/3.2/tokens), [Colors](https://trmnl.com/framework/docs/3.2/colors).
+**Key docs:** [Structure](https://trmnl.com/framework/docs/3.4/structure), [Grid](https://trmnl.com/framework/docs/3.4/grid), [Table](https://trmnl.com/framework/docs/3.4/table), [Chart](https://trmnl.com/framework/docs/3.4/chart), [Themes](https://trmnl.com/framework/docs/3.4/themes), [Tokens](https://trmnl.com/framework/docs/3.4/tokens), [Colors](https://trmnl.com/framework/docs/3.4/colors).
 
 ---
 
@@ -77,7 +77,7 @@ For wrapping grids, add framework classes directly: `class="grid--wrap grid--min
 
 Use `<x-trmnl::table>` with native `<thead>`, `<tbody>`, `<tr>`, `<th>`, `<td>`. Sizes map to framework classes: `base`, `large`, `xlarge`, `small`, `xsmall`; prefer `small` or `xsmall` for dense plugin screens. `condensed` exists as an older alias; do not use it as the first choice.
 
-For predictable rows, clamp long cell content with `data-clamp`. For indexed tables, the framework requires `table--indexed` on the table and `<x-trmnl::meta><span class="index">...</span></x-trmnl::meta>` in the indexed cell. The package table component exposes `size` only, so use native framework table markup when extra table classes such as `table--indexed` are needed. Large tables can rely on framework [Table Overflow](https://trmnl.com/framework/docs/3.2/table_overflow) behavior, including the trailing "and X more" row when content exceeds height.
+For predictable rows, clamp long cell content with `data-clamp`. For indexed tables, the framework requires `table--indexed` on the table and `<x-trmnl::meta><span class="index">...</span></x-trmnl::meta>` in the indexed cell. The package table component exposes `size` only, so use native framework table markup when extra table classes such as `table--indexed` are needed. Large tables can rely on framework [Table Overflow](https://trmnl.com/framework/docs/3.4/table_overflow) behavior, including the trailing "and X more" row when content exceeds height.
 
 **Dense table with clamp and index:**
 
@@ -197,7 +197,7 @@ Mashups place different layouts/plugins on one screen; they are not the default 
 
 ## Themes
 
-Framework 3.2 themes are opt-in stylesheets loaded alongside `plugins.css`. Set the `theme` prop on `<x-trmnl::screen>` to apply a built-in theme:
+Framework 3.4 themes are opt-in stylesheets loaded alongside `plugins.css`. Set the `theme` prop on `<x-trmnl::screen>` to apply a built-in theme:
 
 - `black-and-yellow` — high-contrast yellow accent
 - `dark` — full dark color statement (prefer this over `darkMode` for dark rendering)
@@ -211,7 +211,7 @@ Framework 3.2 themes are opt-in stylesheets loaded alongside `plugins.css`. Set 
 </x-trmnl::screen>
 ```
 
-The screen component loads the matching theme CSS from the TRMNL CDN and emits `screen--theme-{id}`. Themes are a complete color statement: `screen--dark-mode` has no effect while a theme is active unless the theme stylesheet opts into `.screen--theme-{id}.screen--dark-mode`. Use `darkMode` only on unthemed screens. See [Themes](https://trmnl.com/framework/docs/3.2/themes).
+The screen component loads the matching theme CSS from the TRMNL CDN and emits `screen--theme-{id}`. Themes are a complete color statement: `screen--dark-mode` has no effect while a theme is active unless the theme stylesheet opts into `.screen--theme-{id}.screen--dark-mode`. Use `darkMode` only on unthemed screens. See [Themes](https://trmnl.com/framework/docs/3.4/themes).
 
 Override theme URLs in config via `theme_urls`.
 
