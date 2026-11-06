@@ -156,8 +156,8 @@ it('renders screen component with noBleed set to false', function () {
 
 it('renders a pinned framework version from a custom asset host', function () {
     config()->set('trmnl-blade.framework_base_url', 'https://assets.example.com');
-    config()->set('trmnl-blade.framework_css_version', '3.4.4');
-    config()->set('trmnl-blade.framework_js_version', '3.4.4');
+    config()->set('trmnl-blade.framework_css_version', '3.4.6');
+    config()->set('trmnl-blade.framework_js_version', '3.4.6');
 
     $html = (new Screen)->render()->with([
         'slot' => '',
