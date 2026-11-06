@@ -2,6 +2,16 @@
 
 All notable changes to `trmnl-blade` will be documented in this file.
 
+## 3.4.6 - 2026-11-06
+
+### What's Changed
+
+* feat: bump `TRMNL_BLADE_FRAMEWORK_VERSION` to 3.4.6
+
+The release notes for the TRMNL Framework are available at: https://trmnl.com/framework/releases
+
+**Full Changelog**: https://github.com/bnussbau/trmnl-blade/compare/3.4.4...3.4.6
+
 ## 3.4.4 - 2026-10-30
 
 ### What's Changed
